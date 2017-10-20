@@ -28,14 +28,16 @@ is_slot_device=0;
 
 ## AnyKernel file attributes
 # set permissions/ownership for included ramdisk files
-#chmod -R 750 $ramdisk/*;
-#chmod -R root:root $ramdisk/*;
+chmod 750 $ramdisk/init.services.rc
+chmod 750 $ramdisk/sbin/sysinit.sh
 
 
 ## AnyKernel install
 dump_boot;
 
 # begin ramdisk changes
+# init.rc
+insert_line init.rc "import /init.services.rc" after "import /init.fac.rc" "/import init.services.rc";
 
 
 # end ramdisk changes
