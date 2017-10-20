@@ -12,5 +12,4 @@ mkdir out
 export ARCH=arm64
 make -j$BUILD_JOB_NUMBER -C $(pwd) O=$(pwd)/out KCFLAGS=-mno-android flash_gts3llte_defconfig
 make -j$BUILD_JOB_NUMBER -C $(pwd) O=$(pwd)/out KCFLAGS=-mno-android
-
 cp out/arch/arm64/boot/Image $(pwd)/build/825/zImage
