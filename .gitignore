@@ -62,6 +62,8 @@ arch/*/include/generated
 # stgit generated dirs
 patches-*
 out/*
+build/825/zImage
+build/825/*.zip
 
 # quilt's files
 patches
