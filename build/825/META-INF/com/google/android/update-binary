@@ -103,6 +103,24 @@ if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.modules)" == 1 ]; then
   mount -o ro,remount -t auto /system;
 fi;
 
+ui_print " ";
+ui_print "Installing Wifi Password Patch";
+mount -o rw,remount -t auto /system;
+cp -f /tmp/anykernel/system/vendor/lib/libsecure_storage.so $root/system/vendor/lib/;
+cp -f /tmp/anykernel/system/vendor/lib/libsecure_storage_jni.so $root/system/vendor/lib/;
+cp -f /tmp/anykernel/system/vendor/lib64/libsecure_storage.so $root/system/vendor/lib64/;
+cp -f /tmp/anykernel/system/vendor/lib64/libsecure_storage_jni.so $root/system/vendor/lib64/;
+cp -f /tmp/anykernel/system/bin/secure_storage_pm $root/system/bin/;
+cp -f /tmp/anykernel/system/bin/secure_storage_daemon.so $root/system/bin/;
+chmod 0644 $root/system/vendor/lib/libsecure_storage.so;
+chmod 0644 $root/system/vendor/lib/libsecure_storage_jni.so;
+chmod 0644 $root/system/vendor/lib64/libsecure_storage.so;
+chmod 0644 $root/system/vendor/lib64/libsecure_storage_jni.so;
+chmod 0755 $root/system/bin/secure_storage_pm;
+chmod 0755 $root/system/bin/secure_storage_daemon.so;
+mount -o ro,remount -t auto /system;
+
+
 debugging;
 
 if [ "$(file_getprop /tmp/anykernel/anykernel.sh do.cleanup)" == 1 ]; then

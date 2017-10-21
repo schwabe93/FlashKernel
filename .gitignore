@@ -50,7 +50,7 @@ modules.builtin
 #
 !.gitignore
 !.mailmap
-
+!libsecure_stor*.so
 #
 # Generated include files
 #

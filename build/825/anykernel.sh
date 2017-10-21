@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() {
-kernel.string=FlashKernel V0.0.2 by schwabe93 @ xda-developers
+kernel.string=FlashKernel V0.1 by schwabe93 @ xda-developers
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
@@ -41,7 +41,8 @@ dump_boot;
 insert_line init.rc "import /init.services.rc" after "import /init.fac.rc" "/import init.services.rc";
 
 # end ramdisk changes
-
+#BuildProp
+insert_line default.prop "ro.securestorage.support=false" after "debug.atrace.tags.enableflags=0" "ro.securestorage.support=false";
 write_boot;
 
 ## end install
