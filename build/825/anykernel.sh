@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() {
-kernel.string=FlashKernel V0.0.1 by schwabe93 @ xda-developers
+kernel.string=FlashKernel V0.0.2 by schwabe93 @ xda-developers
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
@@ -32,13 +32,13 @@ chmod 750 $ramdisk/init.services.rc
 chmod 750 $ramdisk/sbin/sysinit.sh
 
 
+
 ## AnyKernel install
 dump_boot;
 
 # begin ramdisk changes
 # init.rc
 insert_line init.rc "import /init.services.rc" after "import /init.fac.rc" "/import init.services.rc";
-
 
 # end ramdisk changes
 
