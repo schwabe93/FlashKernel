@@ -64,6 +64,8 @@ patches-*
 out/*
 build/825/zImage
 build/825/*.zip
+build/820/zImage
+build/820/*.zip
 
 # quilt's files
 patches
