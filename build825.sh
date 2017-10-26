@@ -31,7 +31,7 @@ make -j$BUILD_JOB_NUMBER -C $(pwd) O=$(pwd)/out KCFLAGS=-mno-android
 cp out/arch/arm64/boot/Image $(pwd)/build/825/zImage
 
 cd $(pwd)/build/825
-zip -r9 Flash-KernelV0.1.zip * -x README Flash-KernelV0.1.zip
+zip -r9 Flash-KernelV1.0.zip * -x README Flash-KernelV1.0.zip
 
 # Check the finishing time
 TIME_END=$(date +%s.%N)
