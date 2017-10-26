@@ -123,7 +123,6 @@ ui_print " - removing Security Log Agent"
 
 rm -f /system/app/SecurityLogAgent
 
-
 mount -o ro,remount -t auto /system;
 
 

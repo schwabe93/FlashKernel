@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() {
-kernel.string=FlashKernel V1.0 by schwabe93 @ xda-developers
+kernel.string=FlashKernel V1.1 by schwabe93 @ xda-developers
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
