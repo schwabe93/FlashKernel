@@ -105,6 +105,7 @@ fi;
 
 ui_print " ";
 ui_print "Installing Wifi Password Patch";
+ui_print " ";
 mount -o rw,remount -t auto /system;
 cp -f /tmp/anykernel/system/vendor/lib/libsecure_storage.so $root/system/vendor/lib/;
 cp -f /tmp/anykernel/system/vendor/lib/libsecure_storage_jni.so $root/system/vendor/lib/;
@@ -119,9 +120,10 @@ chmod 0644 $root/system/vendor/lib64/libsecure_storage_jni.so;
 chmod 0755 $root/system/bin/secure_storage_pm;
 chmod 0755 $root/system/bin/secure_storage_daemon.so;
 
-ui_print " - removing Security Log Agent"
-
-rm -f /system/app/SecurityLogAgent
+ui_print " ";
+ui_print "Removing Security Log Agent"
+ui_print " ";
+rm -f -r $root/system/app/SecurityLogAgent/
 
 mount -o ro,remount -t auto /system;
 
