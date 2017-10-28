@@ -453,52 +453,51 @@ static void wakeup_source_activate(struct wakeup_source *ws)
 // AP: Function to check if a wakelock is on the wakelock blocker list
 static bool check_for_block(struct wakeup_source *ws)
 {
- 	char wakelock_name[52] = {0};
+	char wakelock_name[52] = {0};
 	int length;
- 
- 	// if debug mode on, print every wakelock requested
- 	if (wl_blocker_debug)
- 		printk("Boeffla WL blocker: %s requested\n", ws->name);
- 
- 	// if there is no list of wakelocks to be blocked, exit without futher checking
- 	if (!wl_blocker_active)
- 		return false;
- 
- 	// only if ws structure is valid
- 	if (ws)
- 	{
- 		// wake lock names which are longer than 50 chars are not handled
- 		if (strlen(ws->name) > 50)
+
+	// if debug mode on, print every wakelock requested
+	if (wl_blocker_debug)
+		printk("Boeffla WL blocker: %s requested\n", ws->name);
+
+	// if there is no list of wakelocks to be blocked, exit without futher checking
+	if (!wl_blocker_active)
+		return false;
+
+	// only if ws structure is valid
+	if (ws)
+	{
 		// wake lock names handled have maximum length=50 and minimum=1
 		length = strlen(ws->name);
 		if ((length > 50) || (length < 1))
- 			return false;
+			return false;
+
 		// check if wakelock is in wake lock list to be blocked
- 		sprintf(wakelock_name, ";%s;", ws->name);
- 
- 		if(strstr(list_wl_search, wakelock_name) == NULL)
- 			return false;
- 
+		sprintf(wakelock_name, ";%s;", ws->name);
+
+		if(strstr(list_wl_search, wakelock_name) == NULL)
+			return false;
+
 		// wake lock is in list, print it if debug mode on
- 		if (wl_blocker_debug)
- 			printk("Boeffla WL blocker: %s blocked\n", ws->name);
- 
- 		// if it is currently active, deactivate it immediately + log in debug mode
- 		if (ws->active)
- 		{
- 			wakeup_source_deactivate(ws);
- 
- 			if (wl_blocker_debug)
- 				printk("Boeffla WL blocker: %s killed\n", ws->name);
- 		}
- 
- 		// finally block it
- 		return true;
- 	}
- 
- 	// there was no valid ws structure, do not block by default
+		if (wl_blocker_debug)
+			printk("Boeffla WL blocker: %s blocked\n", ws->name);
+
+		// if it is currently active, deactivate it immediately + log in debug mode
+		if (ws->active)
+		{
+			wakeup_source_deactivate(ws);
+
+			if (wl_blocker_debug)
+				printk("Boeffla WL blocker: %s killed\n", ws->name);
+		}
+
+		// finally block it
+		return true;
+	}
+
+	// there was no valid ws structure, do not block by default
 	return false;
- }
+}
 #endif
 
 /**
@@ -511,13 +510,13 @@ static void wakeup_source_report_event(struct wakeup_source *ws)
 	if (!check_for_block(ws))	// AP: check if wakelock is on wakelock blocker list
 	{
 #endif
- 		ws->event_count++;
- 		/* This is racy, but the counter is approximate anyway. */
- 		if (events_check_enabled)
- 			ws->wakeup_count++;
- 
- 		if (!ws->active)
- 			wakeup_source_activate(ws);
+		ws->event_count++;
+		/* This is racy, but the counter is approximate anyway. */
+		if (events_check_enabled)
+			ws->wakeup_count++;
+
+		if (!ws->active)
+			wakeup_source_activate(ws);
 #ifdef CONFIG_BOEFFLA_WL_BLOCKER
 	}
 #endif
